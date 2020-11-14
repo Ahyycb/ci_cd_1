@@ -6,9 +6,6 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
-    env:
-      APP_NAME: ci_cd_1
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js
