@@ -24,7 +24,7 @@ jobs:
         id: get_last_changelog
         run: |
           str="$(awk '/### 1/{flag=1;next}/### 1/{print;flag=0}flag' ./CHANGELOG.md)"
-          project_ver= "$(node -e 'console.log(require('./package.json').version);')"
+          project_ver= "$(jq -r '.name' package.json)"
           echo ::set-output name=body::${str}
           echo ::set-output name=project_ver::${str}
       - name: Create Release
