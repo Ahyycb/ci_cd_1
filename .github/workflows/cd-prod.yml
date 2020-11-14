@@ -2,7 +2,7 @@ name: Merge to master
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.18'
-      - run: npm release -- --prerelease
+      - run: npm release
       - run: git push --follow-tags
       - name: Get changelog diff
         id: get_last_changelog
