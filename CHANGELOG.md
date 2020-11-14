@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.1-0 (2020-11-14)
+
+
+### Bug Fixes
+
+* git config ([becc6f4](https://github.com/Ahyycb/ci_cd_1/commit/becc6f4ad2b3000d052e8533a6fc9f7b8ca3f043))
+
 ## 1.1.0 (2020-11-14)
 
 
