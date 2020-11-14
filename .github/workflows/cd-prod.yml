@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.18'
-      - run: npm release
+      - run: npm run release
       - run: git push --follow-tags
       - name: Get changelog diff
         id: get_last_changelog
