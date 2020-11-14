@@ -15,5 +15,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.18'
-      - run: npm release -- --prerelease
+      - run: npm run release -- --prerelease
       - run: git push --follow-tags
