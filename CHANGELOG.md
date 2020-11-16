@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0-0 (2020-11-14)
+
+
+### Features
+
+* generate release in github ([871f070](https://github.com/Ahyycb/ci_cd_1/commit/871f0702c00bd7bfbe80213dd8796dc4772e922e))
+
 ### 1.1.1-0 (2020-11-14)
 
 
