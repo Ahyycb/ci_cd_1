@@ -12,7 +12,6 @@ jobs:
       APP_NAME: ci_cd_1
 
     steps:
-      - uses: develop
       - uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v1
