@@ -13,6 +13,7 @@ jobs:
       output1: ${{ steps.step1.outputs.package_version }}
 
     steps:
+      - id: step1
       - uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v1
@@ -27,5 +28,5 @@ jobs:
     needs: create-prerelease-share
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{needs.create-prerelease-share.outputs.package_version}}
+      - run: echo ${{needs.create-prerelease-share.outputs.output1}}
 
