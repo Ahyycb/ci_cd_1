@@ -43,5 +43,4 @@ jobs:
           uses: actions/setup-node@v1
           with:
             node-version: '12.18'
-      - run: git branch --show-current
-
+      - run: git symbolic-ref -q --short HEAD || git describe --tags --exact-match
