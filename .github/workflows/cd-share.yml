@@ -27,7 +27,9 @@ jobs:
           export CI_PACKAGE_VERSION=node -p -e "require('./package.json').version
           echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
   deploy-qa:
+    name: deploy to qa
     needs: create-prerelease
+    runs-on: ubuntu-latest
     steps:
       - run: echo ${{needs.job1.outputs.output1}}
 
