@@ -1,10 +1,10 @@
-name: Generate prerelease
+name: Share
 on:
   push:
     branches:
       - feat/*
 jobs:
-  create-prerelease:
+  create-prerelease-share:
     name: Create prerelease tag.
     runs-on: ubuntu-latest
     env:
@@ -18,18 +18,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.18'
-      - run: git config --global user.email "robotino@example.com"
-      - run: git config --global user.name "MODO CI Robot"
-      - run: npm install standard-version
-      - run: npm run release -- --prerelease rc
-      - run: echo node -p -e "require('./package.json').version
+      - run: echo node -p -e "require('./package.json').version"
       - run: |
-          export CI_PACKAGE_VERSION=node -p -e "require('./package.json').version
+          export CI_PACKAGE_VERSION=`node -p -e "require('./package.json').version"`
           echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
-  deploy-qa:
+  deploy-qa-share:
     name: deploy to qa
-    needs: create-prerelease
+    needs: create-prerelease-share
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{needs.job1.outputs.output1}}
+      - run: echo ${{needs.create-prerelease-share.outputs.package_version}}
 
