@@ -3,7 +3,7 @@ name: Deploy prerelease
 on:
   push:
     tags:
-      - *rc*
+      - '*rc*'
 
 jobs:
   ci:
