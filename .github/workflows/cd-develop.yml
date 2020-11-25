@@ -18,11 +18,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.18'
-      - run: echo node -p -e "require('./package.json').version"
-      - run: git config --global user.email "robotino@example.com"
-      - run: git config --global user.name "MODO CI Robot"
-      - run: npm install standard-version
-      - run: npm run release -- --prerelease rc
+      - run: |
+          echo node -p -e "require('./package.json').version"
+          git config --global user.email "robotino@example.com"
+          git config --global user.name "MODO CI Robot"
+          npm install standard-version
+          npm run release -- --prerelease rc
       - id: print_version
         run: node -p -e "require('./package.json').version"
       - run: git push --follow-tags --no-verify
