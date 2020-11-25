@@ -1,0 +1,32 @@
+name: Share
+on:
+  push:
+    branches:
+      - feat/*
+jobs:
+  create-prerelease-share:
+    name: Create prerelease tag.
+    runs-on: ubuntu-latest
+    env:
+      APP_NAME: ci_cd_1
+    outputs:
+      output1: ${{ steps.step1.outputs.package_version }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.18'
+      - run: echo node -p -e "require('./package.json').version"
+      - id: step1
+        run: |
+          export CI_PACKAGE_VERSION=`node -p -e "require('./package.json').version"`
+          echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
+  deploy-qa-share:
+    name: deploy to qa
+    needs: create-prerelease-share
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{needs.create-prerelease-share.outputs.output1}}
+
