@@ -1,0 +1,33 @@
+name: Generate prerelease
+on:
+  push:
+    branches:
+      - feat/*
+jobs:
+  create-prerelease:
+    name: Create prerelease tag.
+    runs-on: ubuntu-latest
+    env:
+      APP_NAME: ci_cd_1
+    outputs:
+      output1: ${{ steps.step1.outputs.package_version }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.18'
+      - run: git config --global user.email "robotino@example.com"
+      - run: git config --global user.name "MODO CI Robot"
+      - run: npm install standard-version
+      - run: npm run release -- --prerelease rc
+      - run: echo node -p -e "require('./package.json').version
+      - run: |
+          export CI_PACKAGE_VERSION=node -p -e "require('./package.json').version
+          echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
+  deploy-qa:
+    needs: create-prerelease
+    steps:
+      - run: echo ${{needs.job1.outputs.output1}}
+
