@@ -29,7 +29,7 @@ jobs:
       - id: set_package
         run: |
           export CI_PACKAGE_VERSION=`node -p -e "require('./package.json').version"`
-          echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
+          echo "::set-output name=package_version::v$CI_PACKAGE_VERSION"
   deploy-qa:
     name: Deploy to qa
     needs: create-prerelease
@@ -44,4 +44,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.18'
-      - run: git symbolic-ref -q --short HEAD || git describe --tags --exact-match
+      - run: git describe --tags --exact-match
+  deploy-pre:
+    name: Deploy to pre
+    needs: create-prerelease
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{needs.create-prerelease.outputs.package_version}}
+      - run: "Deploy to PRE"
+      - run: echo ${{needs.create-prerelease.outputs.package_version}}
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.18'
+      - run: git describe --tags --exact-match
