@@ -18,7 +18,7 @@ jobs:
       steps: 
         - id: set_package
           run: |
-            export CI_PACKAGE_VERSION=`echo 1.2.0-rc.6`
+            export CI_PACKAGE_VERSION=`echo v1.2.0-rc.6`
             echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
   deploy-qa:
         name: Deploy to qa
