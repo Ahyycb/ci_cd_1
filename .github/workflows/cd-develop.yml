@@ -36,7 +36,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        ref: ${{needs.create-prerelease.outputs.package_version}}
+        with:
+          ref: ${{needs.create-prerelease.outputs.package_version}}
       - run: "Deploy to QA"
       - run: echo ${{needs.create-prerelease.outputs.package_version}}
       - name: Use Node.js
