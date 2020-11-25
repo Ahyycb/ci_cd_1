@@ -4,10 +4,13 @@ on:
     branches:
       - develop
 jobs:
-  ci:
+  create-prerelease:
+    name: Create prerelease tag.
     runs-on: ubuntu-latest
     env:
       APP_NAME: ci_cd_1
+    outputs:
+      output1: ${{ steps.step1.outputs.package_version }}
 
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +20,17 @@ jobs:
           node-version: '12.18'
       - run: git config --global user.email "robotino@example.com"
       - run: git config --global user.name "MODO CI Robot"
-      - run: npm install
+      - run: npm install standard-version
       - run: npm run release -- --prerelease rc
-      - run: git push --follow-tags
+      - run: git push --follow-tags --no-verify
+      - run: echo node -p -e "require('./package.json').version
+      - run: |
+          export CI_PACKAGE_VERSION=node -p -e "require('./package.json').version
+          echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
+  deploy-qa:
+    name: deploy to qa
+    needs: create-prerelease
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{needs.create-prerelease.outputs.output1}}
+
