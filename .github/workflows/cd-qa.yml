@@ -1,4 +1,9 @@
-name: Deploy QA
+name: Deploy prerelease
+
+on:
+  push:
+    tags:
+      - "*-pre*"
 
 jobs:
   ci:
@@ -13,8 +18,4 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.18'
-      - run: git config --global user.email "robotino@example.com"
-      - run: git config --global user.name "Thaddeus Robotino"
-      - run: npm install
-      - run: npm run release -- --prerelease -t qa-v
-      - run: git push --follow-tags --no-verify
+      - run: echo "Automatic deploy to QA"

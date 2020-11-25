@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '12.18'
       - run: git config --global user.email "robotino@example.com"
-      - run: git config --global user.name "Thaddeus Robotino"
+      - run: git config --global user.name "MODO CI Robot"
       - run: npm install
-      - run: npm run release -- --prerelease
+      - run: npm run release -- --prerelease rc
       - run: git push --follow-tags
