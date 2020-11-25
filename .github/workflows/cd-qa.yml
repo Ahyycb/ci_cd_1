@@ -1,7 +1,7 @@
 name: Deploy prerelease
 
 on:
-  push:
+  create:
     tags:
       - '*rc*'
 
