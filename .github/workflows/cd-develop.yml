@@ -30,6 +30,7 @@ jobs:
   deploy-qa:
     name: deploy to qa
     needs: create-prerelease
+
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{needs.create-prerelease.outputs.output1}}
