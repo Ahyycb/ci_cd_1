@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0-rc.6 (2020-11-25)
+
+
+### Bug Fixes
+
+* comilla ([3ab154a](https://github.com/Ahyycb/ci_cd_1/commit/3ab154add4e80b58507d45dc3c1f6964abd92eac))
+
 ## 1.2.0-rc.5 (2020-11-25)
 
 ## 1.2.0-rc.4 (2020-11-25)
