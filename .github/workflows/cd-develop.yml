@@ -24,7 +24,7 @@ jobs:
       - run: npm install standard-version
       - run: npm run release -- --prerelease rc
       - id: print_version
-        run: node -p -e "require('./package.json').version
+        run: node -p -e "require('./package.json').version"
       - run: git push --follow-tags --no-verify
       - id: set_package
         run: |
