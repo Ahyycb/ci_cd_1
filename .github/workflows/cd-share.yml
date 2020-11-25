@@ -10,17 +10,17 @@ jobs:
     env:
       APP_NAME: ci_cd_1
     outputs:
-      output1: ${{ steps.step1.outputs.package_version }}
+      output1: ${{ steps.step2.outputs.package_version }}
 
     steps:
       - id: step1
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.18'
-      - run: echo node -p -e "require('./package.json').version"
-      - run: |
+        uses: actions/checkout@v2
+        name: Use Node.js
+          uses: actions/setup-node@v1
+          with:
+            node-version: '12.18'
+      - id: step2
+        run: |
           export CI_PACKAGE_VERSION=`node -p -e "require('./package.json').version"`
           echo "::set-output name=package_version::$CI_PACKAGE_VERSION"
   deploy-qa-share:
