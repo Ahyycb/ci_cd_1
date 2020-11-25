@@ -29,7 +29,6 @@ jobs:
             with:
               ref: ${{needs.create-prerelease.outputs.package_version}}
               fetch-depth: 0  
-          - run: "Deploy to QA"
           - run: echo ${{needs.create-prerelease.outputs.package_version}}
           - name: Use Node.js
             uses: actions/setup-node@v1
